@@ -77,7 +77,7 @@
   });
 
   async function updateUsers(): Promise<Stream[]> {
-    let data = fetch(`${BASE_URL}/streams`)
+    let data = fetch(BASE_URL.extend("streams"))
       .then((res) => res.json())
       .then((data) => {
         STREAMS = data;
@@ -104,7 +104,7 @@
     PLAYER?.load([
       {
         type: "webrtc",
-        file: `${WS_URL}/${username}`,
+        file: WS_URL.extend(username),
       },
     ]);
   }

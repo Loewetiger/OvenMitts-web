@@ -12,7 +12,7 @@ interface creds {
 }
 
 export async function login(creds: creds): Promise<LoginOutcome> {
-  let res = await fetch(`${BASE_URL}/user/login`, {
+  let res = await fetch(BASE_URL.extend("user/login"), {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -32,7 +32,7 @@ export async function login(creds: creds): Promise<LoginOutcome> {
 }
 
 export async function register(creds: creds): Promise<RegisterOutcome> {
-  let res = await fetch(`${BASE_URL}/user/register`, {
+  let res = await fetch(BASE_URL.extend("user/register"), {
     method: "POST",
     body: JSON.stringify(creds),
   });
@@ -50,7 +50,7 @@ export async function register(creds: creds): Promise<RegisterOutcome> {
 }
 
 export async function logout() {
-  await fetch(`${BASE_URL}/user/logout`, {
+  await fetch(BASE_URL.extend("user/logout"), {
     method: "POST",
     credentials: "same-origin",
   });

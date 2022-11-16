@@ -10,7 +10,7 @@ const app = new App({
 export default app;
 
 export async function updateUser() {
-  const response = await fetch(`${BASE_URL}/user`, {
+  const response = await fetch(BASE_URL.extend("user"), {
     credentials: "same-origin",
   });
   switch (response.status) {
