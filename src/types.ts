@@ -36,5 +36,54 @@ class URLe {
   }
 }
 
+export class UserModify {
+  username?: string;
+  display_name?: string;
+  stream_title?: string;
+  old_password?: string;
+  new_password?: string;
+  permissions?: string;
+
+  constructor() {}
+
+  for(username: string) {
+    this.username = username;
+    return this;
+  }
+
+  setDisplayName(display_name: string) {
+    this.display_name = display_name;
+    return this;
+  }
+
+  setStreamTitle(stream_title: string) {
+    this.stream_title = stream_title;
+    return this;
+  }
+
+  setPassword(old_password: string, new_password: string) {
+    this.old_password = old_password;
+    this.new_password = new_password;
+    return this;
+  }
+
+  setPermissions(permissions: string) {
+    this.permissions = permissions;
+    return this;
+  }
+
+  toString() {
+    return JSON.stringify(this);
+  }
+
+  async send() {
+    await fetch(BASE_URL.extend("user/update"), {
+      method: "POST",
+      credentials: "same-origin",
+      body: this.toString(),
+    });
+  }
+}
+
 export const BASE_URL = new URLe("__BASE_URL__");
 export const WS_URL = new URLe("__WS_URL__");

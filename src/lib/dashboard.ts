@@ -1,5 +1,5 @@
 import { BASE_URL, RegisterOutcome } from "../types";
-import { LoginOutcome } from "../types";
+import { LoginOutcome, UserModify } from "../types";
 
 export function validUsername(username: string): boolean {
   const RE = new RegExp("^[a-zA-Z0-9_]{4,25}$");

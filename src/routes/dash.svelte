@@ -3,7 +3,7 @@
   import Login from "../components/Login.svelte";
   import { logout } from "../lib/dashboard";
   import { updateUser } from "../main";
-  import type { User } from "../types";
+  import { UserModify, type User } from "../types";
 
   let USER: User | null;
 
@@ -15,6 +15,18 @@
     displayname = val?.display_name;
     streamtitle = val?.stream_title;
   });
+
+  async function modifyUser() {
+    let opts = new UserModify();
+    if (displayname !== USER?.display_name) {
+      opts.setDisplayName(displayname);
+    }
+    if (streamtitle !== USER?.stream_title) {
+      opts.setStreamTitle(streamtitle);
+    }
+    await opts.send();
+    updateUser();
+  }
 </script>
 
 <div class="flex flex-col items-center justify-start h-screen">
@@ -52,7 +64,8 @@
             displayname !== USER?.display_name ||
             streamtitle !== USER?.stream_title
           )
-        )}>Update</button
+        )}
+        on:click={modifyUser}>Update</button
       >
       <div class="flex-auto" />
       <button
