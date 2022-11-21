@@ -125,16 +125,16 @@
     type="checkbox"
     class="drawer-toggle"
   />
-  <div class="drawer-content">
-    <div>
-      <div id="ovenplayer" bind:this={player_element} />
+  <div class="drawer-content h-fit">
+    <div id="ovenplayer" bind:this={player_element} />
+    {#if CURRENT_STREAM}
       <h1 class="text-lg p-4 pb-0">
         {CURRENT_STREAM ? CURRENT_STREAM.display_name : ""}
       </h1>
       <h2 class="text-md pb-20 lg:pb-4 p-4 pt-0">
         {CURRENT_STREAM && CURRENT_STREAM.title ? CURRENT_STREAM.title : ""}
       </h2>
-    </div>
+    {/if}
   </div>
 
   <div class="drawer-side">
