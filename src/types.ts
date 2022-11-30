@@ -79,6 +79,7 @@ export class UserModify {
   async send() {
     await fetch(BASE_URL.extend("user/update"), {
       method: "POST",
+      headers: { "Content-Type": "application/json" },
       credentials: "same-origin",
       body: this.toString(),
     });

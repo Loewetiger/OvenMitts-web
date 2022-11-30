@@ -34,6 +34,7 @@ export async function login(creds: creds): Promise<LoginOutcome> {
 export async function register(creds: creds): Promise<RegisterOutcome> {
   let res = await fetch(BASE_URL.extend("user/register"), {
     method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(creds),
   });
 
